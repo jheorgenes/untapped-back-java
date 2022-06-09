@@ -13,7 +13,7 @@ public class Cliente extends Pessoa implements Serializable {
 	public Cliente() {
 		super();
 	}
-
+	
 	public Cliente(Long id, String nome, String email, String contato, String login, String senha) {
 		super(id, nome, email, contato, login, senha);
 	}
@@ -25,6 +25,4 @@ public class Cliente extends Pessoa implements Serializable {
 	public void setIdade(Integer idade) {
 		this.idade = idade;
 	}
-	
-	
 }

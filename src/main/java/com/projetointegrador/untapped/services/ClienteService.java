@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.projetointegrador.untapped.domain.Cliente;
 import com.projetointegrador.untapped.dtos.ClienteDTO;
 import com.projetointegrador.untapped.repositories.ClienteRepository;
+import com.projetointegrador.untapped.repositories.EnderecoRepository;
 import com.projetointegrador.untapped.services.exceptions.DataIntegratyViolationException;
 import com.projetointegrador.untapped.services.exceptions.ObjectNotFoundException;
 
@@ -18,6 +19,10 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
+
+	
 	public Cliente findById(Long id) {
 		Optional<Cliente> obj = clienteRepository.findById(id);
 		return obj.orElseThrow(
@@ -26,11 +31,14 @@ public class ClienteService {
 	}
 	
 	public List<Cliente> findAll() {
-		return clienteRepository.findAll();
+		return clienteRepository.findAll(); /* Buscando os clientes cadastrados */
 	}
 	
 	public Cliente create(ClienteDTO clienteDTO) {
-		return clienteRepository.save(new Cliente(null, clienteDTO.getNome(), clienteDTO.getEmail(), clienteDTO.getContato(), clienteDTO.getLogin(), clienteDTO.getSenha()));
+		clienteDTO.setId(null); /* Validando se o cliente veio com o ID nulo */
+		Cliente clienteCadastrado = clienteRepository.save(new Cliente(null, clienteDTO.getNome(), clienteDTO.getEmail(), clienteDTO.getContato(), clienteDTO.getLogin(), clienteDTO.getSenha())); /* Criando um cliente */
+		enderecoRepository.saveAll(clienteCadastrado.getEnderecos());
+		return clienteCadastrado;
 	}
 	
 	public Cliente update(Long id, ClienteDTO clienteDTO) {

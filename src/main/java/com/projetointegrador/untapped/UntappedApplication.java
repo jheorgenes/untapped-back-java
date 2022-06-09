@@ -50,7 +50,5 @@ public class UntappedApplication implements CommandLineRunner {
 		
 		Endereco endereco1 = new Endereco(null, "Rua C-3", "Quadra 10", "19", "Parque das Laranjeiras", "74000-000", cidade1, c1);
 		enderecoRepository.saveAll(Arrays.asList(endereco1));
-		
 	}
-
 }

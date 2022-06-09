@@ -1,5 +1,6 @@
 package com.projetointegrador.untapped.dtos;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.validation.constraints.Email;
@@ -8,7 +9,8 @@ import javax.validation.constraints.NotEmpty;
 import com.projetointegrador.untapped.domain.Cliente;
 import com.projetointegrador.untapped.domain.Endereco;
 
-public class ClienteDTO {
+public class ClienteDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 
@@ -53,36 +55,47 @@ public class ClienteDTO {
 	public String getNome() {
 		return nome;
 	}
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
 	public String getEmail() {
 		return email;
 	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	public String getContato() {
 		return contato;
 	}
+	
 	public void setContato(String contato) {
 		this.contato = contato;
 	}
+	
 	public String getLogin() {
 		return login;
 	}
+	
 	public void setLogin(String login) {
 		this.login = login;
 	}
+	
 	public String getSenha() {
 		return senha;
 	}
+	
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
 	public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
+	
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}

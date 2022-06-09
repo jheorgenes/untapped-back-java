@@ -1,10 +1,13 @@
 package com.projetointegrador.untapped.dtos;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotEmpty;
 
 import com.projetointegrador.untapped.domain.Endereco;
 
-public class EnderecoDTO {
+public class EnderecoDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
 	@NotEmpty(message = "Preenchimento obrigatório")
@@ -35,7 +38,7 @@ public class EnderecoDTO {
 		this.bairro = obj.getBairro();
 		this.cep = obj.getCep();
 		this.cidadeId = obj.getCidade().getId();
-		this.pessoaId = obj.getPessoa().getId();
+		this.pessoaId = obj.getPessoa().getId();		
 	}
 
 	public Long getId() {
